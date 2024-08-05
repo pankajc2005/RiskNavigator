@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+    /* styles.css */
+    /* body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    text-align: center;
+} */
+
+    .container {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+        width: 1000px;
+        margin-top: 10px;
+        margin-bottom: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+
+    }
+
+    h2 {
+        text-align: center;
+        color: #ffffff;
+        border-radius: 20px;
+        padding: 10px;
+        background-color: #2462eb;
+    }
+
+    .registration-form label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .registration-form input {
+        width: 250px;
+        margin-left: auto;
+        margin-right: 25px;
+        padding: 10px;
+        margin-bottom: 50px;
+        border: 1px solid #00000079;
+        border-radius: 5px;
+    }
+
+    .registration-form button {
+        width: 300px;
+        background-color: #2462eb;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+    }
+
+    .registration-form button:hover {
+        background-color: #0056b3;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    .open-button {
+        background-color: rgb(255, 179, 0);
+        color: rgb(255, 255, 255);
+        padding: 10px 15px;
+        border: none;
+        font-weight: bold;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 200px;
+    }
+
+    .open-button:hover {
+        background-color: #08a632;
+    }
+
+    /* The popup form - hidden by default */
+    .form-popup {
+        display: none;
+        z-index: 9;
+    }
+
+    /* Add a red background color to the cancel button */
+    .form-container .cancel {
+        background-color: red;
+    }
+
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover,
+    .open-button:hover {
+        opacity: 1;
+    }
+
+
+
+
+
+
+    .circle-btn {
+        border: none;
+        background: url('technical-support.png');
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        position: fixed;
+        bottom: 23px;
+        left: 28px;
+        cursor: pointer;
+    }
+
+    .circle-btn:hover {
+        -webkit-transform: scale(1.25);
+        -ms-transform: scale(1.25);
+        transform: scale(1.25);
+        transition: 1s ease;
+    }
+
+    #hi {
+        position: fixed;
+        bottom: 23px;
+        left: 50px;
+        width: 90%;
+        height: 80%;
+        z-index: 10;
+    }
+
+    #hi:focus {
+        background-color: yellow;
+    }
+</style>
+
+<body>
+    <script src="main.js"></script>
+
+    <div class="nav">
+        <div class="tit">Risk Navigator.</div>
+    </div><br>
+
+    <ul class="ul">
+        <li class="li"><a href="index.html">Home</a></li>
+        <li class="li"><a class="active" href="calc.html" style="font-weight: bold;">Calculator</a></li>
+        <li class="li"><a href="team.html">Team </a></li>
+    </ul>
+    <br>
+    <div style="text-align: center;">
+        <button class="open-button" onclick="openForm()">Open Credit Risk Calculator</button>
+        <button class="open-button" onclick="openForm1()">Open Liquidity Risk Calculator</button>
+    </div>
+
+    <div class="form-popup" id="myForm">
+        <div class="container">
+            <h2>Credit Risk Calculator</h2>
+            <div class="registration-form">
+                <label>Annual Income:</label> <input id="income" type="number">
+                <label>Loan Amount:</label> <input id="loanAmount" type="number">
+                <label>Credit History (1-10):</label> <input id="creditHistory" type="number"><br>
+
+                <button onclick="calculate()">Calculate</button>
+
+                <p id="riskScore" style="background-color: #0056b3;color: white;padding: auto;"></p>
+                <button type="button" class="btn cancel" style="background-color: rgb(255, 0, 0);"
+                    onclick="closeForm()">Close</button>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="form-popup" id="myForm1">
+        <div class="container">
+            <h2>Liquidity Risk Calculator</h2>
+            <div class="registration-form">
+                <label for="liquidFunds">Enter the liquid funds available (LiquidFunds):</label>
+                <input id="liquidFunds" type="number">
+
+                <label for="paymentObligations">Enter the payment obligations (PaymentObligations):</label>
+                <input id="paymentObligations" type="number"><br>
+
+                <button onclick="checkLiquidity()">Check Liquidity</button>
+
+                <p id="result1" style="background-color: #0056b3;color: white;padding: auto;"></p>
+                <button type="button" class="btn cancel" style="background-color: rgb(255, 0, 0);"
+                    onclick="closeForm1()">Close</button>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="form-popup" id="myForm2">
+        <div class="container" id="hi">
+            <h3>Chat with our AI</h3>
+            <div class="registration-form" style="height: 80%;">
+                <iframe src="https://bot.writesonic.com/share/bot/7b72a08c-328f-4962-9d23-0d32a3d3a668" height="100%"
+                    width="100%">
+                </iframe>
+                <br>
+                <button type="button" class="btn cancel" style="background-color: rgb(255, 0, 0);"
+                    onclick="closeForm2()">Close</button>
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="container">
+        <h2>Financial Risk Assessment Tool
+            (Calculator)
+        </h2><br>
+        <div class="registration-form">
+            <label for="number">Enter your <b>Total Monthly Income</b>:</label>
+            <input type="number" id="num1" required>
+
+            <label for="number">Enter Total Amount Invested in all <b>Stocks, Mutual funds</b>:</label>
+            <input type="number" id="num2">
+
+            <label for="number">Enter Total Amount Spent on <b>Food & Grocery, Utilities, Entertainment, Personal care,
+                    Education</b>:</label>
+            <input type="number" id="num3">
+
+            <label for="number">Enter Amount of <b>Home Rent</b> (if not applicable, Leave this):</label>
+            <input type="number" id="num4">
+
+            <label for="number">Enter Total Amount Spent on <b>Loan, Insurence & Emi's</b> (if not applicable, Leave
+                this):</label>
+            <input type="number" id="num5">
+
+            <label for="number">Enter Total Amount Invested in <b>Saving, FD</b>:</label>
+            <input type="number" id="num6">
+
+            <label for="number">Enter <b>Other Expences</b>:</label>
+            <input type="number" id="num7">
+
+            <br><button onclick="addNumbers();showButton()">Calculate</button><br>
+
+
+
+
+            <p id="result"
+                style="background-color: #0056b3;color: white;padding: 10px;display: none;box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;border-radius: 10px;">
+            </p>
+            <br>
+
+            <div style="margin: auto;
+            width: 60%;
+            border: 1px solid #000000;
+            padding: 10px;" id="char"><canvas id="myChart" style="width:100%;max-width:600px"></canvas></div>
+
+            <br><button onclick="window.print()" style="background-color: rgb(13, 186, 51);width: 200px;position: fixed;
+            bottom: 30px;
+            right: 150px;">Export
+                Data</button><br>
+
+            <button onClick="window.location.reload();" style="background-color: red;width: 100px;position: fixed;
+            bottom: 23px;
+            right: 28px;" id="clear">Clear Results</button>
+
+
+        </div>
+    </div>
+    <button class="circle-btn" onclick="openForm2()"></button>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+
+    <div class="pricing-table">
+        <div class="plan">
+            <h1>Basic</h1>
+            <p class="price">Free</p>
+            <ul class="u">
+                <li class="l">Credit & Liquidity Calc</li>
+                
+                <li class="l">Stocks Suggestion</li>
+                <li class="l">Spending Chart</li>
+                <li class="l">Data Export</li>
+            </ul>
+            <button style="background-color: gray;">Current Plan</button>
+        </div>
+        <div class="plan">
+            <h1>Premium</h2>
+                <p class="price">₹149/month</p>
+                <ul class="u">
+                    <li class="l">AI Investment Adviser</li>
+                    <li class="l">Human Expert Adviser</li>
+                    <li class="l">Login System for Data Encryption</li>
+                    <li>Monthly Data Analysis</li>
+                </ul>
+                <button>Buy Plan</button>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function openForm1() {
+            document.getElementById("myForm1").style.display = "block";
+        }
+
+        function openForm2() {
+            document.getElementById("myForm2").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+
+        function closeForm1() {
+            document.getElementById("myForm1").style.display = "none";
+        }
+
+        function closeForm2() {
+            document.getElementById("myForm2").style.display = "none";
+        }
+
+
+
+
+
+
+        function calculate() {
+            var income = document.getElementById("income").value;
+            var loanAmount = document.getElementById("loanAmount").value;
+            var creditHistory = document.getElementById("creditHistory").value;
+
+            // Simple risk score calculation
+            var riskScore = (loanAmount / income) * (10 - creditHistory);
+
+            document.getElementById("riskScore").innerHTML = "Credit Risk Score: " + riskScore.toFixed(2);
+        }
+
+
+
+        function checkLiquidity() {
+            var liquidFunds = document.getElementById("liquidFunds").value;
+            var paymentObligations = document.getElementById("paymentObligations").value;
+
+            if (liquidFunds >= paymentObligations) {
+                document.getElementById("result1").innerHTML = "Sufficient liquidity. No liquidity risk.";
+            } else {
+                document.getElementById("result1").innerHTML = "Insufficient liquidity. Liquidity risk!";
+            }
+        }
+    </script>
+
+
+    <div style="margin-bottom: 100px;"></div>
+</body>
+
+</html>
