@@ -3,7 +3,7 @@
 
 ---
 
-## 🔴 CRITICAL QUESTIONS (High Probability)
+## 🔴 CRITICAL QUESTIONS 
 
 ---
 
@@ -403,3 +403,4 @@
 ---
 
 *Document prepared for National Round - Tri-Netra Team*
+
