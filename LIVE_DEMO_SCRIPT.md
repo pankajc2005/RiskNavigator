@@ -3,7 +3,7 @@
 
 ---
 
-## 📋 PRE-DEMO CHECKLIST
+## 📋DEMO CHECKLIST
 
 ### Hardware Ready
 - [ ] AMD EPYC Server running (or development laptop for demo)
@@ -297,3 +297,4 @@ If judges ask about internet:
 ---
 
 *Good luck with your national round presentation!*
+
